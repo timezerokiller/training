@@ -1,10 +1,11 @@
 import React from "react"
-import style from "./style/Post.module.css"
+import MyForm from "../UI/MyForm"
+import {Col} from "react-bootstrap";
 
 const Post = (props) => {
 
 
-    if(props.post === null) {
+    if (props.post === null) {
         return <div>
             <h1>Загрузка...</h1>
         </div>
@@ -18,13 +19,33 @@ const Post = (props) => {
         props.UpdPost({body: e.target.value})
     }
 
+    let form = [
+        {
+            id: "name",
+            type: "text",
+            placeholder: "Название",
+            label: "Название",
+            description: "Введите название",
+            value: props.post.title,
+            onChange: ChangeTitle
+        },
+        {
+            id: "description",
+            as: "textarea",
+            rows: "3",
+            placeholder: "Описание",
+            label: "Описание",
+            description: "Введите описание",
+            value: props.post.body,
+            onChange: ChangeBody
+        },
+    ];
+
+
     return (
-        <div className={style.item}>
-            <h1>Редактирование поста Id = {props.post.id}</h1>
-            <input type="text" value={props.post.title} onChange={ChangeTitle}/>
-            <textarea value={props.post.body} onChange={ChangeBody}></textarea>
-            <button>Применить</button>
-        </div>
+        <Col xs={12} md={6}>
+            <MyForm form={form} setPost={props.setPost}/>
+        </Col>
     )
 }
 export default Post

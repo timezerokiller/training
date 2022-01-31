@@ -1,6 +1,7 @@
 import {PostsAPI} from "../../API/PostsAPI";
 
 const ADD_POSTS = "ADD_POSTS";
+const SET_POST = "SET_POST";
 const DELETE_POST = "DELETE_POST";
 const GET_POST = "GET_POST";
 const UPD_POST = "UPD_POST";
@@ -49,6 +50,23 @@ const PostsReducer = (state = State, action) => {
             return {
                 ...state,
                 post: state.posts[id]
+            }
+        }
+        case SET_POST: {
+            console.log(state.posts)
+
+            for(let i = 0; i < state.posts.length; i++) {
+                if(state.post.id == state.posts[i].id) {
+                    state.posts[i].title = state.post.title
+                    state.posts[i].body = state.post.body
+                    console.log(state.posts)
+                }
+            }
+
+            return {
+                ...state,
+                ...state.posts,
+                ...state.post
             }
         }
         case UPD_POST: {
@@ -100,6 +118,9 @@ export const getPost = (id) => ({
 export const UpdPost = (post) => ({
     type: UPD_POST,
     post
+})
+export const setPost = () => ({
+    type: SET_POST,
 })
 
 //pagination

@@ -5,7 +5,9 @@ import {setPosts, deletePost, setPage} from "../../redux/Reducers/PostsReducer";
 
 const PostsContainer = (props) => {
     useEffect(()=>{
-        props.setPosts()
+        if(!props.posts) {
+            props.setPosts()
+        }
     },[])
 
     const clickPage = (page) => {
@@ -13,7 +15,7 @@ const PostsContainer = (props) => {
     }
 
     return (
-        <Posts {...props} clickPage={clickPage} />
+        <Posts {...props} clickPage={clickPage}/>
     )
 }
 

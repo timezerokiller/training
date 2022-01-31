@@ -2,33 +2,34 @@ import React, {useEffect} from "react"
 import {Form, Button} from "react-bootstrap"
 
 const MyForm = (props) => {
-    let form = props.form.form
 
-    if (!form) {
+    if (!props.form) {
         return (<h2>Загрузка...</h2>)
     }
+
+    let form = props.form
+
     console.log(props)
 
     return (
         <Form>
-            {form.map(form =>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>form.label</Form.Label>
-                    <Form.Control type={form.type} placeholder={form.placeholder}/>
+            {form.map((form, index)=>
+                <Form.Group key={index} className="mb-3" controlId={form.id}>
+                    <Form.Label>{form.label}</Form.Label>
+                    {form.as || form.rows
+                         ? <Form.Control style={{height: '150px'}} onChange={form.onChange} value={form.value} row={form.rows} as={form.as} placeholder={form.placeholder}/>
+                         : <Form.Control onChange={form.onChange} value={form.value} type={form.type} placeholder={form.placeholder}/>
+                    }
                     <Form.Text className="text-muted">
                         {form.description}
                     </Form.Text>
                 </Form.Group>)}
 
-            <Form.Group className="mb-3" controlId="formBasicPassword">
-                <Form.Label>Password</Form.Label>
-                <Form.Control type="password" placeholder="Password"/>
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                <Form.Check type="checkbox" label="Check me out"/>
-            </Form.Group>
-            <Button variant="primary" type="submit">
-
+            <Button onClick={(e) => {
+                e.preventDefault()
+                props.setPost()
+            }} variant="primary" type="submit">
+                Отправить
             </Button>
         </Form>
     )

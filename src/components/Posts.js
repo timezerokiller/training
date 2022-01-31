@@ -1,11 +1,13 @@
 import React from "react"
 import style from "./style/Posts.module.css"
 import {Link} from "react-router-dom"
+import {Pagination, Col, Button} from "react-bootstrap"
+
 
 const Posts = (props) => {
 
 
-    let arrPages = []
+    let items = []
     let AllPagePosts = null
     let PagePosts = null
     let posts
@@ -23,11 +25,22 @@ const Posts = (props) => {
     if (props.posts) {
         AllPagePosts = sliceIntoChunks(props.posts, props.pagination.limit)
         PagePosts = AllPagePosts[props.pagination.page]
-        for (let i = 0; i < AllPagePosts.length; i++) {
-            arrPages.push(i)
+        for (let page = 1; page < PagePosts.length; page++) {
+            items.push(
+                <Pagination.Item key={page} active={page === props.pagination.page} onClick={(e) => {props.clickPage(page)}}>
+                    {page}
+                </Pagination.Item>,
+            );
         }
 
     }
+    console.log(items)
+
+    const pagination = (
+        <div>
+            <Pagination>{items}</Pagination>
+        </div>
+    )
 
 
     PagePosts === null
@@ -36,28 +49,20 @@ const Posts = (props) => {
             <div className={style.item} key={posts.id}>
                 <h3 key={posts.title}>{posts.title}</h3>
                 <p key={posts.body}>{posts.body}</p>
-                <button onClick={() => {
+                <Button variant="success"><Link style={{color: "white", textDecoration: "none"}} to={"/posts/" + posts.id}>Редактировать</Link></Button>
+                <Button variant="danger" onClick={() => {
                     props.deletePost(posts.id)
                 }}>Удалить
-                </button>
-                <button><Link to={"/posts/" + posts.id}>Редактировать</Link></button>
+                </Button>
             </div>
         )
 
     return (
-        <div>
+        <Col xs={12} md={6}>
             <h1>Статьи</h1>
             {posts}
-            <div className={style.pagination}>
-                {arrPages.map(page =>
-                    <button key={page} onClick={(e) => {
-                        props.clickPage(page)
-                    }}>
-                        {page + 1}
-                    </button>
-                )}
-            </div>
-        </div>
+            {pagination}
+        </Col>
     )
 }
 export default Posts

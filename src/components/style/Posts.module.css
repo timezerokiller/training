@@ -16,3 +16,7 @@
 .pagination button:active {
     box-shadow: none;
 }
+
+.item button {
+    margin: 5px;
+}

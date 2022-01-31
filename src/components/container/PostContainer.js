@@ -1,7 +1,7 @@
 import React, {useEffect} from "react"
 import {useParams} from "react-router-dom"
 import {connect} from "react-redux"
-import {getPost, UpdPost} from "../../redux/Reducers/PostsReducer";
+import {getPost, UpdPost, setPost} from "../../redux/Reducers/PostsReducer";
 import Post from "../Post"
 
 const PostContainer = (props) => {
@@ -12,7 +12,7 @@ const PostContainer = (props) => {
     }, [])
 
     return (
-        <Post post={props.post}  UpdPost={props.UpdPost}/>
+        <Post post={props.post}  UpdPost={props.UpdPost} setPost={props.setPost}/>
     )
 }
 
@@ -23,6 +23,7 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps, {
+    setPost,
     UpdPost,
     getPost
 })(PostContainer)

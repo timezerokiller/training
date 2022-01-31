@@ -4,6 +4,8 @@ import {BrowserRouter} from "react-router-dom";
 import MyRoutes from "./Routes/MyRoutes.jsx"
 import NavHeader from "./components/NavHeader/NavHeader"
 import Store from "./redux/redux-store"
+import {Container, Row} from "react-bootstrap";
+
 
 function App() {
 
@@ -12,10 +14,18 @@ function App() {
             <Provider store={Store}>
                 <div className={style.App}>
                     <header className={style.AppHeader}>
-                        <NavHeader/>
+                        <Container>
+                            <Row>
+                                <NavHeader/>
+                            </Row>
+                        </Container>
                     </header>
                     <main>
-                        <MyRoutes/>
+                        <Container>
+                            <Row>
+                                <MyRoutes/>
+                            </Row>
+                        </Container>
                     </main>
                 </div>
             </Provider>
