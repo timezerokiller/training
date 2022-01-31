@@ -8,9 +8,8 @@ const Posts = (props) => {
     let arrPages = []
     let AllPagePosts = null
     let PagePosts = null
+    let posts
 
-
-    console.log(props)
 
     const sliceIntoChunks = (arr, chunkSize) => {
         const res = [];
@@ -21,34 +20,43 @@ const Posts = (props) => {
         return res
     }
 
-    if(props.posts) {
+    if (props.posts) {
         AllPagePosts = sliceIntoChunks(props.posts, props.pagination.limit)
-        console.log(AllPagePosts)
         PagePosts = AllPagePosts[props.pagination.page]
-        for(let i = 0; i < AllPagePosts.length; i++) {
+        for (let i = 0; i < AllPagePosts.length; i++) {
             arrPages.push(i)
         }
 
     }
 
-    let posts
 
     PagePosts === null
         ? posts = "Loading..."
         : posts = PagePosts.map(posts =>
-        <div className={style.item} key={posts.id}>
-            <h3 key={posts.title}>{posts.title}</h3>
-            <p key={posts.body}>{posts.body}</p>
-            <button onClick={()=> {props.deletePost(posts.id)}}>Удалить</button>
-            <button><Link to={"/posts/"+posts.id}>Редактировать</Link></button>
-        </div>
+            <div className={style.item} key={posts.id}>
+                <h3 key={posts.title}>{posts.title}</h3>
+                <p key={posts.body}>{posts.body}</p>
+                <button onClick={() => {
+                    props.deletePost(posts.id)
+                }}>Удалить
+                </button>
+                <button><Link to={"/posts/" + posts.id}>Редактировать</Link></button>
+            </div>
         )
 
     return (
         <div>
             <h1>Статьи</h1>
             {posts}
-            <div>{arrPages.map(page => <button key={page} onClick={(e) => {props.clickPage(page)}}>{page}</button>)}</div>
+            <div className={style.pagination}>
+                {arrPages.map(page =>
+                    <button key={page} onClick={(e) => {
+                        props.clickPage(page)
+                    }}>
+                        {page + 1}
+                    </button>
+                )}
+            </div>
         </div>
     )
 }

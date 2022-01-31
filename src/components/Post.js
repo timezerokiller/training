@@ -4,7 +4,6 @@ import style from "./style/Post.module.css"
 const Post = (props) => {
 
 
-
     if(props.post === null) {
         return <div>
             <h1>Загрузка...</h1>
