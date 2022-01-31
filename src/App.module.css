@@ -1,0 +1,33 @@
+.App {
+}
+
+.AppHeader {
+    display: flex;
+    height: 80px;
+    background: azure;
+}
+
+.AppHeader nav {
+    display: flex;
+    margin: auto auto;
+    width: 80%;
+}
+
+.App main {
+    display: flex;
+    margin: 0 auto;
+    width: 80%;
+}
+
+.AppHeader a {
+    padding: 5px;
+    border: gray solid 1px;
+    text-decoration: none;
+    margin: 5px;
+    box-shadow: 1px 1px 0px 0.5px;
+}
+
+.AppHeader a:active {
+    box-shadow: none;
+}
+
