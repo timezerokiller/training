@@ -3,7 +3,7 @@ import style from "./style/Post.module.css"
 
 const Post = (props) => {
 
-    console.log(props)
+
 
     if(props.post === null) {
         return <div>

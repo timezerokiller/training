@@ -1,25 +1,31 @@
 import React, {useEffect} from "react"
 import {connect} from "react-redux"
 import Posts from "../Posts"
-import {setPosts, deletePost} from "../../redux/Reducers/PostsReducer";
+import {setPosts, deletePost, setPage} from "../../redux/Reducers/PostsReducer";
 
 const PostsContainer = (props) => {
     useEffect(()=>{
         props.setPosts()
     },[])
 
+    const clickPage = (page) => {
+        props.setPage(page)
+    }
+
     return (
-        <Posts {...props} />
+        <Posts {...props} clickPage={clickPage} />
     )
 }
 
 const mapStateToProps = (state) => {
     return {
-        posts: state.PostsReducer.posts
+        posts: state.PostsReducer.posts,
+        pagination: state.PostsReducer.pagination
     }
 }
 
 export default connect(mapStateToProps, {
     deletePost,
-    setPosts
+    setPosts,
+    setPage
 })(PostsContainer)

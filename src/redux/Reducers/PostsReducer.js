@@ -4,20 +4,32 @@ const ADD_POSTS = "ADD_POSTS";
 const DELETE_POST = "DELETE_POST";
 const GET_POST = "GET_POST";
 const UPD_POST = "UPD_POST";
+//pagination
+const SET_PAGE = "SET_PAGE";
 
 
 let State = {
     posts: null,
-    post: null
+    post: null,
+    pagination: {
+        page: 0,
+        total: null,
+        limit: 10
+    }
 }
 
 
 const PostsReducer = (state = State, action) => {
     switch (action.type) {
         case ADD_POSTS: {
+            console.log(action.posts)
             return {
                 ...state,
-                posts: action.posts
+                posts: action.posts.data,
+                pagination: {
+                    ...state.pagination,
+                    total: action.posts.data.length
+                }
             }
         }
         case DELETE_POST: {
@@ -58,6 +70,15 @@ const PostsReducer = (state = State, action) => {
                 }
             }
         }
+        case SET_PAGE: {
+            return {
+                ...state,
+                pagination: {
+                    ...state.pagination,
+                    page: action.page
+                }
+            }
+        }
         default: {
             return state
         }
@@ -81,9 +102,15 @@ export const UpdPost = (post) => ({
     post
 })
 
+//pagination
+export const setPage = (page) => ({
+    type: SET_PAGE,
+    page
+})
+
 export const setPosts = () => (dispatch) => {
     PostsAPI.getPosts().then(res => {
-        dispatch(addPosts(res.data))
+        dispatch(addPosts(res))
     })
 }
 
