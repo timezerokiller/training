@@ -10,14 +10,6 @@ const Post = (props) => {
             <h1>Загрузка...</h1>
         </div>
     }
-    const ChangeTitle = (e) => {
-        props.UpdPost({
-            title: e.target.value
-        })
-    }
-    const ChangeBody = (e) => {
-        props.UpdPost({body: e.target.value})
-    }
 
     let form = [
         {
@@ -27,7 +19,6 @@ const Post = (props) => {
             label: "Название",
             description: "Введите название",
             value: props.post.title,
-            onChange: ChangeTitle
         },
         {
             id: "description",
@@ -37,14 +28,13 @@ const Post = (props) => {
             label: "Описание",
             description: "Введите описание",
             value: props.post.body,
-            onChange: ChangeBody
         },
     ];
 
-
     return (
         <Col xs={12} md={6}>
-            <MyForm form={form} setPost={props.setPost}/>
+            <h1>Редактировать</h1>
+            <MyForm form={form} setPost={props.setPost} updPost={props.UpdPost}/>
         </Col>
     )
 }

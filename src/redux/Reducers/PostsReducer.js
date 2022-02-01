@@ -23,7 +23,6 @@ let State = {
 const PostsReducer = (state = State, action) => {
     switch (action.type) {
         case ADD_POSTS: {
-            console.log(action.posts)
             return {
                 ...state,
                 posts: action.posts.data,
@@ -49,24 +48,23 @@ const PostsReducer = (state = State, action) => {
             }
             return {
                 ...state,
-                post: state.posts[id]
+                post: state.posts[id],
+                pagination: {...state.pagination}
             }
         }
         case SET_POST: {
-            console.log(state.posts)
-
             for(let i = 0; i < state.posts.length; i++) {
                 if(state.post.id == state.posts[i].id) {
                     state.posts[i].title = state.post.title
                     state.posts[i].body = state.post.body
-                    console.log(state.posts)
                 }
             }
 
             return {
                 ...state,
                 ...state.posts,
-                ...state.post
+                ...state.post,
+                ...state.pagination
             }
         }
         case UPD_POST: {
@@ -76,15 +74,24 @@ const PostsReducer = (state = State, action) => {
                     post: {
                         ...state.post,
                         title: action.post.title
-                    }
+                    },
+                    ...state.pagination
                 }
-            } else {
+            } else if (action.post.body) {
                 return {
                     ...state,
                     post: {
                         ...state.post,
                         body: action.post.body
-                    }
+                    },
+                    ...state.pagination
+                }
+            } else {
+                return {
+                    ...state,
+                    ...state.posts,
+                    ...state.post,
+                    ...state.pagination
                 }
             }
         }
