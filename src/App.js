@@ -14,7 +14,7 @@ function App() {
     const options = {
         // you can also just use 'bottom center'
         position: positions.TOP_CENTER,
-        timeout: 5000,
+        timeout: 4000,
         offset: '30px',
         // you can also just use 'scale'
         transition: transitions.SCALE,

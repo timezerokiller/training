@@ -12,7 +12,18 @@ const TodoContainer = (props) => {
     let alert = useAlert()
 
     const addTodo = (e) => {
+        let error = []
         e.preventDefault();
+        if (title === '') {
+            error.push('название')
+        }
+        if (body === '') {
+            error.push('Описание')
+        }
+        if(error.length !== 0) {
+            error.join(' ')
+            return alert.show(("обяхательно " + error), {type: 'error'})
+        }
         props.addTodo({
             id: id,
             title: title,
@@ -23,7 +34,18 @@ const TodoContainer = (props) => {
         setBody('')
     }
     const updTodo = (e) => {
-        e.preventDefault()
+        let error = []
+        e.preventDefault();
+        if (edit.title === '') {
+            error.push('название')
+        }
+        if (edit.body === '') {
+            error.push('Описание')
+        }
+        if(error.length !== 0) {
+            error.join(' ')
+            return alert.show(("обяхательно " + error), {type: 'error'})
+        }
         props.updTodo(edit)
         alert.show("Задача отредактирована")
         setEdit(null)
