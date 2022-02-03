@@ -8,7 +8,7 @@ import Alert from "../../API/AlertAPI"
 const TodoContainer = (props) => {
     let [title, setTitle] = useState('')
     let [body, setBody] = useState('')
-    let [id, setId] = useState(1)
+    let [id, setId] = useState(0)
     let [edit, setEdit] = useState(null)
     let alert = useAlert()
 
@@ -30,7 +30,7 @@ const TodoContainer = (props) => {
             })
         }
         props.addTodo({
-            id: id,
+            id: id+1,
             title: title,
             body: body
         })

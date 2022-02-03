@@ -4,6 +4,7 @@ import PostsContainer from "../Components/Containers/PostsContainer"
 import PostContainer from "../Components/Containers/PostContainer"
 import Home from "../Components/Public/Home"
 import TodoContainer from "../Components/Containers/TodoContainer"
+import LoginContainer from "../Components/Containers/LoginContainer"
 
 const MyRoutes = () => {
     return (
@@ -13,6 +14,7 @@ const MyRoutes = () => {
                 <Route path="/posts" element={<PostsContainer/>}/>
                 <Route path="/posts/:id" element={<PostContainer/>}/>
                 <Route path="/todo" element={<TodoContainer/>}/>
+                <Route path="/login" element={<LoginContainer/>}/>
             </Routes>
         </div>
     );

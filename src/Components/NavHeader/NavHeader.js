@@ -14,6 +14,12 @@ const NavHeader = () => {
                         <Link to="/posts">Статьи</Link>
                         <Link to="/todo">Задачи</Link>
                     </Nav>
+
+                </Navbar.Collapse>
+                <Navbar.Collapse className="justify-content-end">
+                    <Nav>
+                        <Link to="/login">Войти</Link>
+                    </Nav>
                 </Navbar.Collapse>
             </Container>
         </Navbar>

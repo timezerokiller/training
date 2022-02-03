@@ -111,7 +111,6 @@ const Todo = (props) => {
                             </Form.Group>
                             <Button variant="primary" type="submit" onClick={(e) => {
                                 props.addTodo(e)
-                                props.setId(props.id + 1)
                             }}>
                                 Добавить
                             </Button>
