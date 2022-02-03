@@ -1,9 +1,9 @@
 import React from "react"
 import {Routes, Route} from "react-router-dom"
-import PostsContainer from "../components/container/PostsContainer"
-import PostContainer from "../components/container/PostContainer"
-import Home from "../components/Home"
-import TodoContainer from "../components/container/TodoContainer"
+import PostsContainer from "../Components/Containers/PostsContainer"
+import PostContainer from "../Components/Containers/PostContainer"
+import Home from "../Components/Public/Home"
+import TodoContainer from "../Components/Containers/TodoContainer"
 
 const MyRoutes = () => {
     return (

@@ -1,7 +1,7 @@
 import React, {useState} from "react"
 import {connect} from "react-redux"
 import Todo from "../Public/Todo"
-import {addTodo, updTodo, delTodo} from "../../redux/Reducers/TodoReducer";
+import {addTodo, updTodo, delTodo} from "../../Redux/Reducers/TodoReducer";
 import {useAlert} from "react-alert"
 import Alert from "../../API/AlertAPI"
 

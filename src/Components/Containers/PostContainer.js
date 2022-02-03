@@ -1,7 +1,7 @@
 import React, {useEffect} from "react"
 import {useParams} from "react-router-dom"
 import {connect} from "react-redux"
-import {getPost, setPost} from "../../redux/Reducers/PostsReducer";
+import {getPost, setPost} from "../../Redux/Reducers/PostsReducer";
 import Post from "../Public/Post"
 
 const PostContainer = (props) => {
