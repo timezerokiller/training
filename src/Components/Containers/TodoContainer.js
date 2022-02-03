@@ -64,12 +64,13 @@ const TodoContainer = (props) => {
         alert.show(("Задача отредактирована"), {
             position: Alert.position.TOP_CENTER,
             type: Alert.type.SUCCESS,
-            transition: Alert.transition.SCALE
+            transition: Alert.transition.FADE
         })
         setEdit(null)
     }
-    const delTodo = (id) => {
-        props.delTodo(id)
+    const delTodo = (todoid) => {
+        props.delTodo(todoid)
+        setId(id-1)
         alert.show("Задача удалена")
     }
 
