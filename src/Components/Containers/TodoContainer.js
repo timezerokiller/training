@@ -34,7 +34,7 @@ const TodoContainer = (props) => {
             title: title,
             body: body
         })
-        setId(id++)
+        setId(id+1)
         alert.show(("Задача добавлена"), {
             position: Alert.position.TOP_CENTER,
             type: Alert.type.SUCCESS,
