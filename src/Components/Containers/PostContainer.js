@@ -1,10 +1,11 @@
 import React, {useEffect} from "react"
 import {useParams} from "react-router-dom"
 import {connect} from "react-redux"
-import {getPost, UpdPost, setPost} from "../../redux/Reducers/PostsReducer";
-import Post from "../Post"
+import {getPost, setPost} from "../../redux/Reducers/PostsReducer";
+import Post from "../Public/Post"
 
 const PostContainer = (props) => {
+
     const {id} = useParams();
 
     useEffect(() => {
@@ -12,7 +13,7 @@ const PostContainer = (props) => {
     }, [])
 
     return (
-        <Post post={props.post}  UpdPost={props.UpdPost} setPost={props.setPost}/>
+        <Post post={props.post} setPost={props.setPost}/>
     )
 }
 
@@ -24,6 +25,5 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, {
     setPost,
-    UpdPost,
     getPost
 })(PostContainer)

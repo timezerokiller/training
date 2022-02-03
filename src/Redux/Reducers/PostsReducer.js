@@ -4,7 +4,6 @@ const ADD_POSTS = "ADD_POSTS";
 const SET_POST = "SET_POST";
 const DELETE_POST = "DELETE_POST";
 const GET_POST = "GET_POST";
-const UPD_POST = "UPD_POST";
 //pagination
 const SET_PAGE = "SET_PAGE";
 
@@ -54,45 +53,16 @@ const PostsReducer = (state = State, action) => {
         }
         case SET_POST: {
             for(let i = 0; i < state.posts.length; i++) {
-                if(state.post.id == state.posts[i].id) {
-                    state.posts[i].title = state.post.title
-                    state.posts[i].body = state.post.body
+                if(state.posts[i].id === action.post.id) {
+                    state.posts[i].title = action.post.title
+                    state.posts[i].body = action.post.body
                 }
             }
-
             return {
                 ...state,
                 ...state.posts,
                 ...state.post,
                 ...state.pagination
-            }
-        }
-        case UPD_POST: {
-            if (action.post.title) {
-                return {
-                    ...state,
-                    post: {
-                        ...state.post,
-                        title: action.post.title
-                    },
-                    ...state.pagination
-                }
-            } else if (action.post.body) {
-                return {
-                    ...state,
-                    post: {
-                        ...state.post,
-                        body: action.post.body
-                    },
-                    ...state.pagination
-                }
-            } else {
-                return {
-                    ...state,
-                    ...state.posts,
-                    ...state.post,
-                    ...state.pagination
-                }
             }
         }
         case SET_PAGE: {
@@ -122,12 +92,10 @@ export const getPost = (id) => ({
     type: GET_POST,
     id
 })
-export const UpdPost = (post) => ({
-    type: UPD_POST,
-    post
-})
-export const setPost = () => ({
+
+export const setPost = (post) => ({
     type: SET_POST,
+    post
 })
 
 //pagination

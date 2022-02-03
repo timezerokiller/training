@@ -1,5 +1,5 @@
 import React from "react"
-import style from "./style/Posts.module.css"
+import style from "../style/Posts.module.css"
 import {Link} from "react-router-dom"
 import {Pagination, Col, Button} from "react-bootstrap"
 
@@ -34,7 +34,6 @@ const Posts = (props) => {
         }
 
     }
-    console.log(items)
 
     const pagination = (
         <div>
@@ -44,11 +43,11 @@ const Posts = (props) => {
 
 
     PagePosts === null
-        ? posts = "Loading..."
+        ? posts = <h1>Загрузка...</h1>
         : posts = PagePosts.map(posts =>
             <div className={style.item} key={posts.id}>
-                <h3 key={posts.title}>{posts.title}</h3>
-                <p key={posts.body}>{posts.body}</p>
+                <h3>{posts.title}</h3>
+                <p>{posts.body}</p>
                 <Button variant="success"><Link style={{color: "white", textDecoration: "none"}} to={"/posts/" + posts.id}>Редактировать</Link></Button>
                 <Button variant="danger" onClick={() => {
                     props.deletePost(posts.id)

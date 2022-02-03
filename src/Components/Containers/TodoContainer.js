@@ -1,8 +1,9 @@
 import React, {useState} from "react"
 import {connect} from "react-redux"
-import Todo from "../Todo"
+import Todo from "../Public/Todo"
 import {addTodo, updTodo, delTodo} from "../../redux/Reducers/TodoReducer";
 import {useAlert} from "react-alert"
+import Alert from "../../API/AlertAPI"
 
 const TodoContainer = (props) => {
     let [title, setTitle] = useState('')
@@ -22,14 +23,22 @@ const TodoContainer = (props) => {
         }
         if(error.length !== 0) {
             error.join(' ')
-            return alert.show(("обяхательно " + error), {type: 'error'})
+            return alert.show(("обяхательно " + error), {
+                position: Alert.position.TOP_CENTER,
+                type: Alert.type.ERROR,
+                transition: Alert.transition.FADE
+            })
         }
         props.addTodo({
             id: id,
             title: title,
             body: body
         })
-        alert.show("Задача добавлена")
+        alert.show(("Задача добавлена"), {
+            position: Alert.position.TOP_CENTER,
+            type: Alert.type.SUCCESS,
+            transition: Alert.transition.SCALE
+        })
         setTitle('')
         setBody('')
     }
@@ -44,10 +53,18 @@ const TodoContainer = (props) => {
         }
         if(error.length !== 0) {
             error.join(' ')
-            return alert.show(("обяхательно " + error), {type: 'error'})
+            return alert.show(("обяхательно " + error), {
+                position: Alert.position.TOP_CENTER,
+                type: Alert.type.ERROR,
+                transition: Alert.transition.FADE
+            })
         }
         props.updTodo(edit)
-        alert.show("Задача отредактирована")
+        alert.show(("Задача отредактирована"), {
+            position: Alert.position.TOP_CENTER,
+            type: Alert.type.SUCCESS,
+            transition: Alert.transition.SCALE
+        })
         setEdit(null)
     }
     const delTodo = (id) => {
