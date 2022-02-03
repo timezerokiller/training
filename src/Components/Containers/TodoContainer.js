@@ -23,7 +23,7 @@ const TodoContainer = (props) => {
         }
         if(error.length !== 0) {
             error.join(' ')
-            return alert.show(("обяхательно " + error), {
+            return alert.show(("обязательно " + error), {
                 position: Alert.position.TOP_CENTER,
                 type: Alert.type.ERROR,
                 transition: Alert.transition.FADE
@@ -34,6 +34,7 @@ const TodoContainer = (props) => {
             title: title,
             body: body
         })
+        setId(id++)
         alert.show(("Задача добавлена"), {
             position: Alert.position.TOP_CENTER,
             type: Alert.type.SUCCESS,
@@ -53,7 +54,7 @@ const TodoContainer = (props) => {
         }
         if(error.length !== 0) {
             error.join(' ')
-            return alert.show(("обяхательно " + error), {
+            return alert.show(("обязательно " + error), {
                 position: Alert.position.TOP_CENTER,
                 type: Alert.type.ERROR,
                 transition: Alert.transition.FADE
