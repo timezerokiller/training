@@ -1,12 +1,16 @@
+import React, {useEffect} from "react"
 import {connect} from "react-redux"
-import Login from "../Public/Login"
-import {loginIn} from "../../Redux/Reducers/AuthReducer"
+import Logout from "../Public/Auth/Logout"
+import Cookies from "js-cookie";
+import {loginOut} from "../../Redux/Reducers/AuthReducer"
 
 
 
-const LoginContainer = (props) => {
+
+const LogoutContainer = (props) => {
+
     return (
-        <Login loginIn={props.loginIn}/>
+        <Logout/>
     )
 }
 
@@ -19,4 +23,4 @@ const mapStateToProps = (state) => {
 
 
 
-export default connect(mapStateToProps, {loginIn})(LoginContainer)
+export default connect(mapStateToProps, {loginOut})(LogoutContainer)

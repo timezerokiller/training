@@ -1,7 +1,7 @@
 import React from 'react';
 import {useField, Form, FormikProps, Formik} from 'formik';
 import {Form as FormBootstrap, Button} from "react-bootstrap"
-import {BootstrapTextField} from "../../UI/BootstrapTextField"
+import {BootstrapTextField} from "../../../UI/BootstrapTextField"
 
 interface
 Values

@@ -1,19 +1,21 @@
 import {connect} from "react-redux"
-import Login from "../Public/Login"
+import Login from "../Public/Auth/Login"
 import {loginIn} from "../../Redux/Reducers/AuthReducer"
 
 
 
 const LoginContainer = (props) => {
+    console.log(props)
     return (
-        <Login loginIn={props.loginIn}/>
+        <Login />
     )
 }
 
 
 const mapStateToProps = (state) => {
     return {
-        auth: state.AuthReducer.auth
+        auth: state.AuthReducer.auth,
+        error: state.AuthReducer.error
     }
 }
 

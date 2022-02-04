@@ -22,6 +22,7 @@ const TodoReducer = (state = initState, action) => {
         case UPD_TODO: {
             for (let i = 0; i < state.todo.length; i++) {
                 if (action.todo.id === state.todo[i].id) {
+                    console.log(action.todo)
                     state.todo[i].title = action.todo.title
                     state.todo[i].body = action.todo.body
                 }

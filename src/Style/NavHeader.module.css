@@ -1,7 +1,4 @@
-
-
-
-.AppHeader a {
+.Nav a {
     padding: 5px;
     border: gray solid 1px;
     text-decoration: none;
@@ -9,7 +6,6 @@
     box-shadow: 1px 1px 0px 0.5px;
 }
 
-.AppHeader a:active {
+.Nav a:active {
     box-shadow: none;
 }
-

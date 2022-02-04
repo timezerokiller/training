@@ -1,20 +1,15 @@
 import React, {useState} from "react"
 import {connect} from "react-redux"
-import Todo from "../Public/Todo"
+import Todo from "../Public/Todo/Todo"
 import {addTodo, updTodo, delTodo} from "../../Redux/Reducers/TodoReducer";
-import {useAlert} from "react-alert"
-import Alert from "../../API/AlertAPI"
+import {message} from "antd"
 
 const TodoContainer = (props) => {
-    let [title, setTitle] = useState('')
-    let [body, setBody] = useState('')
     let [id, setId] = useState(0)
     let [edit, setEdit] = useState(null)
-    let alert = useAlert()
 
-    const addTodo = (e) => {
+    const addTodo = (title, body) => {
         let error = []
-        e.preventDefault();
         if (title === '') {
             error.push('название')
         }
@@ -22,11 +17,9 @@ const TodoContainer = (props) => {
             error.push('Описание')
         }
         if(error.length !== 0) {
-            error.join(' ')
-            return alert.show(("обязательно " + error), {
-                position: Alert.position.TOP_CENTER,
-                type: Alert.type.ERROR,
-                transition: Alert.transition.FADE
+            error = error.join(',').toLowerCase()
+            return message.error({
+                content: "Обязательно " + error
             })
         }
         props.addTodo({
@@ -35,47 +28,35 @@ const TodoContainer = (props) => {
             body: body
         })
         setId(id+1)
-        alert.show(("Задача добавлена"), {
-            position: Alert.position.TOP_CENTER,
-            type: Alert.type.SUCCESS,
-            transition: Alert.transition.SCALE
-        })
-        setTitle('')
-        setBody('')
+        message.success('Задача добавлена')
     }
-    const updTodo = (e) => {
+    const updTodo = (editId, title, body) => {
         let error = []
-        e.preventDefault();
-        if (edit.title === '') {
+        if (title === '') {
             error.push('название')
         }
-        if (edit.body === '') {
+        if (body === '') {
             error.push('Описание')
         }
         if(error.length !== 0) {
             error.join(' ')
-            return alert.show(("обязательно " + error), {
-                position: Alert.position.TOP_CENTER,
-                type: Alert.type.ERROR,
-                transition: Alert.transition.FADE
-            })
+            return message.error(error)
         }
-        props.updTodo(edit)
-        alert.show(("Задача отредактирована"), {
-            position: Alert.position.TOP_CENTER,
-            type: Alert.type.SUCCESS,
-            transition: Alert.transition.FADE
+        props.updTodo({
+            id: editId,
+            title:title,
+            body:body
         })
-        setEdit(null)
+        message.success('Задача отредактирова')
     }
     const delTodo = (todoid) => {
         props.delTodo(todoid)
         setId(id-1)
-        alert.show("Задача удалена")
+        message.info('Задача удалена')
     }
 
     return (
-        <Todo todo={props.todo} addTodo={addTodo} setTitle={setTitle} setBody={setBody} setId={setId} title={title} body={body} id={id} edit={edit} setEdit={setEdit} updTodo={updTodo} delTodo={delTodo}/>
+        <Todo todo={props.todo} addTodo={addTodo} setId={setId} id={id} updTodo={updTodo} delTodo={delTodo} edit={edit} setEdit={setEdit}/>
     )
 }
 

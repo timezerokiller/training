@@ -1,6 +1,6 @@
 import React, {useEffect} from "react"
 import {connect} from "react-redux"
-import Posts from "../Public/Posts"
+import Posts from "../Public/Posts/Posts"
 import {setPosts, deletePost, setPage} from "../../Redux/Reducers/PostsReducer";
 
 const PostsContainer = (props) => {
