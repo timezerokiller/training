@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from "react"
-import {Col, Form, Button} from "react-bootstrap";
 import {useNavigate} from "react-router-dom"
 
 const Post = (props) => {
@@ -48,24 +47,23 @@ const Post = (props) => {
     }
 
     return (
-        <Col xs={12} md={6}>
+        <div>
             <h1>Редактировать</h1>
-            <Form>
-                <Form.Group className="mb-3" controlId="postForm.input">
-                    <Form.Label>Название</Form.Label>
-                    <Form.Control type="text" placeholder="Название" value={post.title} onChange={(event) => {titleChange(event)}}/>
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="postForm.textarea">
-                    <Form.Label>Описание</Form.Label>
-                    <Form.Control as="textarea" rows={3} placeholder="Описание" value={post.body} onChange={(event) => {bodyChange(event)}}/>
-                </Form.Group>
-                <Button onClick={
+            <form>
+                <input type="text" placeholder="Название" value={post.title} onChange={(event) => {
+                    titleChange(event)
+                }}/>
+                <input as="textarea" rows={3} placeholder="Описание" value={post.body} onChange={(event) => {
+                    bodyChange(event)
+                }}/>
+                <button onClick={
                     (event) => {
                         editClick(event)
                     }
-                }>Отредиктировать</Button>
-            </Form>
-        </Col>
+                }>Отредиктировать
+                </button>
+            </form>
+        </div>
     )
 }
 export default Post

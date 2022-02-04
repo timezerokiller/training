@@ -1,6 +1,5 @@
 import React from "react"
 import {Link} from "react-router-dom"
-import {Pagination, Col, Button} from "react-bootstrap"
 
 
 const Posts = (props) => {
@@ -26,9 +25,9 @@ const Posts = (props) => {
         PagePosts = AllPagePosts[props.pagination.page]
         for (let page = 1; page < PagePosts.length; page++) {
             items.push(
-                <Pagination.Item key={page} active={page === props.pagination.page} onClick={(e) => {props.clickPage(page)}}>
+                <span key={page} active={page === props.pagination.page} onClick={(e) => {props.clickPage(page)}}>
                     {page}
-                </Pagination.Item>,
+                </span>,
             );
         }
 
@@ -36,7 +35,7 @@ const Posts = (props) => {
 
     const pagination = (
         <div>
-            <Pagination>{items}</Pagination>
+            <span>{items}</span>
         </div>
     )
 
@@ -47,20 +46,20 @@ const Posts = (props) => {
             <div className="mb-3" key={posts.id}>
                 <h3>{posts.title}</h3>
                 <p>{posts.body}</p>
-                <Link className="m-2" to={"/posts/" + posts.id}><Button variant="success">Редактировать</Button></Link>
-                <Button variant="danger" onClick={() => {
+                <Link className="m-2" to={"/posts/" + posts.id}><button variant="success">Редактировать</button></Link>
+                <button variant="danger" onClick={() => {
                     props.deletePost(posts.id)
                 }}>Удалить
-                </Button>
+                </button>
             </div>
         )
 
     return (
-        <Col xs={12} md={6}>
+        <div>
             <h1>Статьи</h1>
             {posts}
             {pagination}
-        </Col>
+        </div>
     )
 }
 export default Posts
