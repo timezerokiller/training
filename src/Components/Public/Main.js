@@ -41,6 +41,7 @@ const Main = () => {
                     {Mybreadcrumbs.map(({ breadcrumb}) => <Breadcrumb.Item key={breadcrumb}>{breadcrumb}</Breadcrumb.Item>)}
                 </Breadcrumb>
                 <div className="site-layout-background" style={{ padding: 24, minHeight: 380 }}>
+
                     <MyRoutes/>
                 </div>
             </Content>

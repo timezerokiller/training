@@ -3,31 +3,47 @@ import {PostsAPI} from "../../API/PostsAPI";
 const ADD_POSTS = "ADD_POSTS";
 const SET_POST = "SET_POST";
 const DELETE_POST = "DELETE_POST";
+const SLICE_POSTS = "SLICE_POSTS";
 const GET_POST = "GET_POST";
 //pagination
 const SET_PAGE = "SET_PAGE";
+const SET_LIMIT = "SET_LIMIT";
 
 
 let State = {
     posts: null,
+    slice: null,
     post: null,
     pagination: {
         page: 0,
         total: null,
-        limit: 10
+        limit: 10,
+        pageSIze: null
     }
 }
 
 
 const PostsReducer = (state = State, action) => {
     switch (action.type) {
+        case SET_LIMIT: {
+            return {
+                ...state,
+                ...state.posts,
+                pagination: {
+                    ...state.pagination,
+                    limit: action.limit,
+                    pageSize: state.pagination.total / action.limit
+                },
+            }
+        }
         case ADD_POSTS: {
             return {
                 ...state,
                 posts: action.posts.data,
                 pagination: {
                     ...state.pagination,
-                    total: action.posts.data.length
+                    total: action.posts.data.length,
+                    pageSize: action.posts.data.length / state.pagination.limit
                 }
             }
         }
@@ -52,8 +68,8 @@ const PostsReducer = (state = State, action) => {
             }
         }
         case SET_POST: {
-            for(let i = 0; i < state.posts.length; i++) {
-                if(state.posts[i].id === action.post.id) {
+            for (let i = 0; i < state.posts.length; i++) {
+                if (state.posts[i].id === action.post.id) {
                     state.posts[i].title = action.post.title
                     state.posts[i].body = action.post.body
                 }
@@ -98,11 +114,21 @@ export const setPost = (post) => ({
     post
 })
 
-//pagination
+export const slicePosts = (posts) => ({
+    type: SLICE_POSTS,
+    posts
+})
+
+//pagination////////////////////////
 export const setPage = (page) => ({
     type: SET_PAGE,
     page
 })
+export const setPostsLimit = (limit) => ({
+    type:SET_LIMIT,
+    limit
+})
+//////////////////////////////
 
 export const setPosts = () => (dispatch) => {
     PostsAPI.getPosts().then(res => {
