@@ -19,9 +19,6 @@ const Login = (props) => {
     }
 
 
-
-
-
     return (
         <div>
             <h1>Логин</h1>
@@ -29,26 +26,10 @@ const Login = (props) => {
                     <input type="text" placeholder="Введите логин" onChange={(e) => {
                         ChangeLogin(e)
                     }}/>
-                    {!props.error.login
-                        ? <p className="text-muted">
-                            Логин: Admin
-                        </p>
-                        : <p className="text-danger">
-                            Неверный логин
-                        </p>
-                    }
 
                     <input type="password" placeholder="Пароль" onChange={(e) => {
                         ChangePassword(e)
                     }}/>
-                    {!props.error.password
-                        ? <p className="text-muted">
-                            Пароль: 123
-                        </p>
-                        : <p> className="text-danger">
-                            Неверный пароль
-                        </p>
-                    }
                 <button type="submit" onClick={(e) => {
                     ClickLogin(e)
                 }}>
