@@ -16,7 +16,7 @@ import {
 } from '@ant-design/icons';
 
 
-import {Links, LinksUser} from "../../API/LinksAPI"
+import {Links, LinksUser, breadcrumbs} from "../../API/LinksAPI"
 import Cookies from "js-cookie";
 
 
@@ -39,7 +39,7 @@ const Main = (props) => {
         timeout: 4000,
         offset: '30px',
     }
-    const Mybreadcrumbs = useBreadcrumbs(link);
+    const Mybreadcrumbs = useBreadcrumbs(breadcrumbs);
 
 
     return (
@@ -63,7 +63,7 @@ const Main = (props) => {
                 <Header style={{position: 'fixed', zIndex: 1, width: '100%'}}>
                     <div className="logo"/>
                     <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['0']}>
-                        {link.map((link, index) => <Menu.Item key={index}><Link to={link.path}>{link.breadcrumb}</Link></Menu.Item>)}
+                        {link.map((link, index) => <Menu.Item key={index}><Link to={link.path}>{link.name}</Link></Menu.Item>)}
                     </Menu>
                 </Header>
                 <Content className="site-layout" style={{padding: '0 50px', marginTop: 64}}>
